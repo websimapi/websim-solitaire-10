@@ -1,6 +1,10 @@
 import { CardRenderer } from './card-renderer.js';
 import { makeCardInteractive } from './drag-drop.js';
 
+export function clearHint() {
+    document.querySelectorAll('.hint-overlay').forEach(e => e.remove());
+}
+
 export function render(game, UI, audio) {
     // Update stats immediately on render
     if (UI.scoreDisplay) UI.scoreDisplay.textContent = game.score;
@@ -133,7 +137,7 @@ export function highlightHint(UI, hint) {
     }
 
     // Remove any existing hint overlays
-    document.querySelectorAll('.hint-overlay').forEach(e => e.remove());
+    clearHint();
 
     if (elementsToHighlight.length > 0) {
         // Calculate the union bounding box of all highlighted elements
